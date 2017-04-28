@@ -6,6 +6,8 @@ Date: Apr. 28, 2017
 
 __Name:__ iQuiz: A Multiple-Choice Q-and-A application
 
+- Description:
+
   - users can choose from a collection of quizzes
 
   - each quiz has a number (1-to-many) of questions

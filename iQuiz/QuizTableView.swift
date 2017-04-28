@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuizTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
+class QuizTableView: UITableView, UITableViewDataSource {
     
     var quizzes: [String]? = ["Mathematics", "Marvel Super Heroes", "Science"]
     
@@ -28,11 +28,6 @@ class QuizTableView: UITableView, UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-
-    // Delegate
-    //
-    
-    
     
     
     

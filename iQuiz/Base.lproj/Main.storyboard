@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="wMx-NZ-qCq">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="gZt-fz-6Bx">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a24-WV-ofG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="wMx-NZ-qCq" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PCy-42-hoL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="OJO-Qu-etX"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-865" y="36"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -22,45 +37,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bk5-Wf-a71">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1DO-vq-ZEH"/>
-                                    <barButtonItem title="Setting" id="JrB-fa-hEQ">
-                                        <connections>
-                                            <action selector="SettingBtnPressDown:" destination="BYZ-38-t0r" id="KM0-SU-Dl2"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="DU2-RC-gd0" customClass="QuizTableView" customModule="iQuiz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="41y-7y-Qlm" customClass="QuizTableView" customModule="iQuiz" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="DU2-RC-gd0" secondAttribute="trailing" id="Ghj-lb-pkP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="DU2-RC-gd0" secondAttribute="bottom" id="KdA-Ba-en9"/>
-                            <constraint firstAttribute="trailing" secondItem="bk5-Wf-a71" secondAttribute="trailing" id="Lf4-fh-oXl"/>
-                            <constraint firstItem="DU2-RC-gd0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Onq-qX-U7C"/>
-                            <constraint firstItem="bk5-Wf-a71" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mK6-Y7-J83"/>
-                            <constraint firstItem="bk5-Wf-a71" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="nqy-gS-HiF"/>
-                            <constraint firstItem="DU2-RC-gd0" firstAttribute="top" secondItem="bk5-Wf-a71" secondAttribute="bottom" id="wYv-Au-s91"/>
+                            <constraint firstItem="41y-7y-Qlm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="90s-4N-sMj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="41y-7y-Qlm" secondAttribute="bottom" id="Kkt-xi-Fod"/>
+                            <constraint firstItem="41y-7y-Qlm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Udo-Bk-ArA"/>
+                            <constraint firstAttribute="trailing" secondItem="41y-7y-Qlm" secondAttribute="trailing" id="emv-P4-0hw"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="haB-gy-Tf2">
+                        <barButtonItem key="rightBarButtonItem" title="Setting" id="JrB-fa-hEQ">
+                            <connections>
+                                <action selector="SettingBtnPressDown:" destination="BYZ-38-t0r" id="KM0-SU-Dl2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="quizTable" destination="DU2-RC-gd0" id="LPL-MF-VQT"/>
+                        <outlet property="quizTable" destination="41y-7y-Qlm" id="aGC-jo-tin"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="24.800000000000001" y="36.431784107946029"/>
         </scene>
-        <!--View Controller-->
+        <!--Question View Controller-->
         <scene sceneID="28I-rJ-OQg">
             <objects>
-                <viewController storyboardIdentifier="question" id="nJP-k0-708" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="question" id="nJP-k0-708" customClass="QuestionViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Svx-DX-heB"/>
                         <viewControllerLayoutGuide type="bottom" id="mH0-Rm-GI4"/>
@@ -69,17 +77,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6F-Ta-tNM">
-                                <rect key="frame" x="16" y="637" width="343" height="30"/>
-                                <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="Next"/>
-                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMW-Rh-jxe">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Quit" id="DNb-SJ-aFM">
+                                        <connections>
+                                            <action selector="quitBtnClick:" destination="nJP-k0-708" id="6Tg-BM-bvn"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="UXh-RC-oYw"/>
+                                    <barButtonItem title="Next" id="Jca-2q-krj">
+                                        <connections>
+                                            <action selector="nextBtnClick:" destination="nJP-k0-708" id="RMy-D2-i8x"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O43-cA-fjy">
+                                <rect key="frame" x="148.5" y="323" width="77.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="n6F-Ta-tNM" firstAttribute="leading" secondItem="OfH-9W-s5M" secondAttribute="leadingMargin" id="Nbt-K1-ND5"/>
-                            <constraint firstItem="mH0-Rm-GI4" firstAttribute="top" secondItem="n6F-Ta-tNM" secondAttribute="bottom" id="eE3-vM-Xxt"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="n6F-Ta-tNM" secondAttribute="trailing" id="qzz-vO-jRS"/>
+                            <constraint firstItem="O43-cA-fjy" firstAttribute="centerX" secondItem="OfH-9W-s5M" secondAttribute="centerX" id="2sQ-GJ-w2e"/>
+                            <constraint firstItem="LMW-Rh-jxe" firstAttribute="leading" secondItem="OfH-9W-s5M" secondAttribute="leading" id="5Mx-t3-CyV"/>
+                            <constraint firstItem="mH0-Rm-GI4" firstAttribute="top" secondItem="LMW-Rh-jxe" secondAttribute="bottom" id="Hbl-Sk-ca8"/>
+                            <constraint firstAttribute="trailing" secondItem="LMW-Rh-jxe" secondAttribute="trailing" id="Tx4-XP-MFP"/>
+                            <constraint firstItem="O43-cA-fjy" firstAttribute="centerY" secondItem="OfH-9W-s5M" secondAttribute="centerY" id="umb-QX-HAR"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -87,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="727" y="34"/>
         </scene>
-        <!--View Controller-->
+        <!--Report View Controller-->
         <scene sceneID="6Ra-zo-RQq">
             <objects>
-                <viewController storyboardIdentifier="finish" id="bfC-vi-uoL" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="report" id="bfC-vi-uoL" customClass="ReportViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vCP-JX-lrn"/>
                         <viewControllerLayoutGuide type="bottom" id="zB0-gL-JoA"/>
@@ -98,7 +125,27 @@
                     <view key="view" contentMode="scaleToFill" id="vTL-Cw-V8a">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m63-ef-13U">
+                                <rect key="frame" x="161" y="323" width="52" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGe-bb-dny">
+                                <rect key="frame" x="164" y="617" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Finish"/>
+                                <connections>
+                                    <action selector="finishBtnClick:" destination="bfC-vi-uoL" eventType="touchUpInside" id="eEN-4H-Uni"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="m63-ef-13U" firstAttribute="centerY" secondItem="vTL-Cw-V8a" secondAttribute="centerY" id="7Ab-ff-Kmg"/>
+                            <constraint firstItem="m63-ef-13U" firstAttribute="centerX" secondItem="vTL-Cw-V8a" secondAttribute="centerX" id="aYL-y2-NLT"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gM-bs-W64" userLabel="First Responder" sceneMemberID="firstResponder"/>

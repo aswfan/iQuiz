@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -40,6 +41,51 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="41y-7y-Qlm" customClass="QuizTableView" customModule="iQuiz" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuizTableCell" id="RMa-jd-tGn" customClass="QuizTableViewCell" customModule="iQuiz" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RMa-jd-tGn" id="rdA-Hh-pRM">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fHF-ib-QS0">
+                                                    <rect key="frame" x="10" y="2" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="fHF-ib-QS0" secondAttribute="height" multiplier="1:1" id="HzS-wc-jAe"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOH-M9-NAc">
+                                                    <rect key="frame" x="60" y="2" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hI7-qt-jbs">
+                                                    <rect key="frame" x="60" y="27" width="28.5" height="13.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fHF-ib-QS0" firstAttribute="leading" secondItem="rdA-Hh-pRM" secondAttribute="leading" constant="10" id="DIn-9y-G89"/>
+                                                <constraint firstItem="hI7-qt-jbs" firstAttribute="leading" secondItem="fHF-ib-QS0" secondAttribute="trailing" constant="10" id="QYn-K1-hDW"/>
+                                                <constraint firstItem="cOH-M9-NAc" firstAttribute="top" secondItem="rdA-Hh-pRM" secondAttribute="top" constant="2" id="T6x-iL-THB"/>
+                                                <constraint firstItem="fHF-ib-QS0" firstAttribute="top" secondItem="rdA-Hh-pRM" secondAttribute="top" constant="2" id="Wrh-qk-CoN"/>
+                                                <constraint firstItem="fHF-ib-QS0" firstAttribute="centerY" secondItem="rdA-Hh-pRM" secondAttribute="centerY" id="YL0-fX-ZEg"/>
+                                                <constraint firstItem="cOH-M9-NAc" firstAttribute="leading" secondItem="fHF-ib-QS0" secondAttribute="trailing" constant="10" id="pDj-nK-dfl"/>
+                                                <constraint firstItem="hI7-qt-jbs" firstAttribute="top" secondItem="cOH-M9-NAc" secondAttribute="bottom" constant="4" id="rJA-Yf-6VX"/>
+                                                <constraint firstAttribute="bottom" secondItem="fHF-ib-QS0" secondAttribute="bottom" constant="2" id="vEl-Hf-iR6"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="des" destination="hI7-qt-jbs" id="bbn-Ke-Rag"/>
+                                            <outlet property="img" destination="fHF-ib-QS0" id="N9H-HJ-nLY"/>
+                                            <outlet property="title" destination="cOH-M9-NAc" id="TVg-Kd-E2X"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,7 +140,7 @@
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O43-cA-fjy">
-                                <rect key="frame" x="148.5" y="323" width="77.5" height="21"/>
+                                <rect key="frame" x="149" y="323" width="77.5" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -127,7 +173,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m63-ef-13U">
-                                <rect key="frame" x="161" y="323" width="52" height="21"/>
+                                <rect key="frame" x="161.5" y="323" width="52" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

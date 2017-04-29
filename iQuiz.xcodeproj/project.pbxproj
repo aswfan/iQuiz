@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9DB63CE91EB533E900AEE931 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB63CE81EB533E900AEE931 /* QuestionViewController.swift */; };
 		9DB63CEB1EB5344B00AEE931 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB63CEA1EB5344B00AEE931 /* ReportViewController.swift */; };
+		9DB63CED1EB54FAF00AEE931 /* QuizTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB63CEC1EB54FAF00AEE931 /* QuizTableViewCell.swift */; };
 		9DE234B51EB3D07000060A8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE234B41EB3D07000060A8A /* AppDelegate.swift */; };
 		9DE234B71EB3D07000060A8A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE234B61EB3D07000060A8A /* ViewController.swift */; };
 		9DE234BA1EB3D07000060A8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9DE234B81EB3D07000060A8A /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 /* Begin PBXFileReference section */
 		9DB63CE81EB533E900AEE931 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		9DB63CEA1EB5344B00AEE931 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
+		9DB63CEC1EB54FAF00AEE931 /* QuizTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTableViewCell.swift; sourceTree = "<group>"; };
 		9DE234B11EB3D07000060A8A /* iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DE234B41EB3D07000060A8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9DE234B61EB3D07000060A8A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				9DE234E41EB3D5BA00060A8A /* QuizTableView.swift */,
 				9DB63CE81EB533E900AEE931 /* QuestionViewController.swift */,
 				9DB63CEA1EB5344B00AEE931 /* ReportViewController.swift */,
+				9DB63CEC1EB54FAF00AEE931 /* QuizTableViewCell.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 			files = (
 				9DE234B71EB3D07000060A8A /* ViewController.swift in Sources */,
 				9DE234B51EB3D07000060A8A /* AppDelegate.swift in Sources */,
+				9DB63CED1EB54FAF00AEE931 /* QuizTableViewCell.swift in Sources */,
 				9DB63CE91EB533E900AEE931 /* QuestionViewController.swift in Sources */,
 				9DB63CEB1EB5344B00AEE931 /* ReportViewController.swift in Sources */,
 				9DE234E51EB3D5BA00060A8A /* QuizTableView.swift in Sources */,

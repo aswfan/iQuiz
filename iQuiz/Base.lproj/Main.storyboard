@@ -13,7 +13,6 @@
         <!--Navigation Controller-->
         <scene sceneID="gZt-fz-6Bx">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="a24-WV-ofG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="wMx-NZ-qCq" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PCy-42-hoL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -23,6 +22,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="OJO-Qu-etX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a24-WV-ofG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-865" y="36"/>
         </scene>
@@ -38,11 +38,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="41y-7y-Qlm" customClass="QuizTableView" customModule="iQuiz" customModuleProvider="target">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="41y-7y-Qlm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="QuizTableCell" id="RMa-jd-tGn" customClass="QuizTableViewCell" customModule="iQuiz" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myTableCell" id="RMa-jd-tGn" customClass="myTableViewCell" customModule="iQuiz" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RMa-jd-tGn" id="rdA-Hh-pRM">
@@ -80,9 +80,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="des" destination="hI7-qt-jbs" id="bbn-Ke-Rag"/>
-                                            <outlet property="img" destination="fHF-ib-QS0" id="N9H-HJ-nLY"/>
-                                            <outlet property="title" destination="cOH-M9-NAc" id="TVg-Kd-E2X"/>
+                                            <outlet property="des" destination="hI7-qt-jbs" id="CUk-3i-cwD"/>
+                                            <outlet property="img" destination="fHF-ib-QS0" id="K2C-cK-RFY"/>
+                                            <outlet property="title" destination="cOH-M9-NAc" id="nLp-4l-eM6"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -104,7 +104,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="quizTable" destination="41y-7y-Qlm" id="aGC-jo-tin"/>
+                        <outlet property="quizTable" destination="41y-7y-Qlm" id="khg-rf-IXO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -139,26 +139,29 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Questions" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O43-cA-fjy">
-                                <rect key="frame" x="149" y="323" width="77.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HBW-m1-4BS">
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="O43-cA-fjy" firstAttribute="centerX" secondItem="OfH-9W-s5M" secondAttribute="centerX" id="2sQ-GJ-w2e"/>
                             <constraint firstItem="LMW-Rh-jxe" firstAttribute="leading" secondItem="OfH-9W-s5M" secondAttribute="leading" id="5Mx-t3-CyV"/>
+                            <constraint firstItem="LMW-Rh-jxe" firstAttribute="top" secondItem="HBW-m1-4BS" secondAttribute="bottom" id="86w-sq-S2e"/>
                             <constraint firstItem="mH0-Rm-GI4" firstAttribute="top" secondItem="LMW-Rh-jxe" secondAttribute="bottom" id="Hbl-Sk-ca8"/>
+                            <constraint firstItem="HBW-m1-4BS" firstAttribute="top" secondItem="Svx-DX-heB" secondAttribute="bottom" id="MVE-rs-WKv"/>
+                            <constraint firstAttribute="trailing" secondItem="HBW-m1-4BS" secondAttribute="trailing" id="NsH-Ec-Yc6"/>
                             <constraint firstAttribute="trailing" secondItem="LMW-Rh-jxe" secondAttribute="trailing" id="Tx4-XP-MFP"/>
-                            <constraint firstItem="O43-cA-fjy" firstAttribute="centerY" secondItem="OfH-9W-s5M" secondAttribute="centerY" id="umb-QX-HAR"/>
+                            <constraint firstItem="HBW-m1-4BS" firstAttribute="leading" secondItem="OfH-9W-s5M" secondAttribute="leading" id="U9v-6j-nhW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tv" destination="HBW-m1-4BS" id="bhA-WT-Or0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxh-HY-Vhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="727" y="34"/>
+            <point key="canvasLocation" x="725.60000000000002" y="33.733133433283363"/>
         </scene>
         <!--Report View Controller-->
         <scene sceneID="6Ra-zo-RQq">

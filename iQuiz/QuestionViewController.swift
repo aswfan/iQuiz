@@ -9,6 +9,11 @@
 import UIKit
 
 class QuestionViewController: UIViewController {
+    
+    @IBOutlet weak var tv: UITableView!
+    
+    
+    
 
     @IBAction func quitBtnClick(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
@@ -38,6 +43,7 @@ class QuestionViewController: UIViewController {
         self.view.insertSubview(vc.view, at: 0)
         vc.didMove(toParentViewController: self)
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

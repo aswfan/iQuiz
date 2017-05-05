@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuizTableViewCell: UITableViewCell {
+class myTableViewCell: UITableViewCell {
     
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var title: UILabel!

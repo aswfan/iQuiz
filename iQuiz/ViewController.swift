@@ -17,9 +17,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.fetchDataFromServer("https://tednewardsandbox.site44.com/questions.json")
+            DispatchQueue.main.async {
+                self.switchView()
+            }
+        }
+    }
+    
+    func switchView() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = sb.instantiateViewController(withIdentifier: "question")
-        
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -71,6 +79,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // fetch data from server
     func fetchDataFromServer(_ serverURL: String) {
         let url = URL(string: serverURL)
+        URLSession.shared.dataTask(with:url!) { (data, response, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!) as? [[String: Any]]
+                    for dict in json! {
+                        if let title = dict["title"] as? String {
+                            print(title)
+                        }
+                    }
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+            
+            }.resume()
     }
 
 }

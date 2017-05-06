@@ -15,6 +15,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Delegate
     //
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc: UIViewController = sb.instantiateViewController(withIdentifier: "question")
         
@@ -33,6 +35,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         quizTable.dataSource = self
         quizTable.delegate = self
         
+        quizTable.tableFooterView = UIView()
         
     }
 
@@ -65,34 +68,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
+    // fetch data from server
+    func fetchDataFromServer(_ serverURL: String) {
+        let url = URL(string: serverURL)
+    }
 
 }
 
-class MyDataSource: NSObject, UITableViewDataSource {
-    
-    var titles: [String]? = ["Mathematics", "Marvel Super Heroes", "Science"]
-    var imgs: [UIImage]? = [#imageLiteral(resourceName: "Math"), #imageLiteral(resourceName: "Marvel"), #imageLiteral(resourceName: "Science")]
-    var dess: [String]? = ["I love Math", "Batman is super cool", "Science makes world better"]
-    
-    
-    // Data Source
-    //
-    @available(iOS 2.0, *)
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titles!.count
-    }
-    
-    @available(iOS 2.0, *)
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let row = indexPath.row
-        let cellIdentifier = "myTableCell"
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? myTableViewCell ?? myTableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-        cell.title?.text = titles?[row]
-        cell.img?.image = imgs?[row]
-        cell.des?.text = dess?[row]
-        return cell
-    }
-    
-
-}
 

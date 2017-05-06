@@ -16,18 +16,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
-        
         DispatchQueue.global(qos: .userInitiated).async {
-            self.fetchDataFromServer("https://tednewardsandbox.site44.com/questions.json")
-            DispatchQueue.main.async {
-                self.switchView()
-            }
+            self.fetchDataFromServer("https://tednewardsandbox.site44.com/questions.json", with: (self.titles?[indexPath.row])! )
+//            DispatchQueue.main.async {
+//                self.switchView()
+//            }
         }
+        
     }
     
     func switchView() {
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc: UIViewController = sb.instantiateViewController(withIdentifier: "question")
+        let vc: QuestionViewController = (sb.instantiateViewController(withIdentifier: "question") as? QuestionViewController)!
+        
+        vc.questions = self.questions
+        vc.answers = self.answers
+        
         self.present(vc, animated: true, completion: nil)
     }
     
@@ -57,6 +61,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     var imgs: [UIImage]? = [#imageLiteral(resourceName: "Math"), #imageLiteral(resourceName: "Marvel"), #imageLiteral(resourceName: "Science")]
     var dess: [String]? = ["I love Math", "Batman is super cool", "Science makes world better"]
     
+    var questions: [[[String]]]? = nil
+    var answers: [Int]? = nil
+    
     
     // Data Source
     //
@@ -77,7 +84,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     // fetch data from server
-    func fetchDataFromServer(_ serverURL: String) {
+    func fetchDataFromServer(_ serverURL: String, with: String) {
         let url = URL(string: serverURL)
         URLSession.shared.dataTask(with:url!) { (data, response, error) in
             if error != nil {
@@ -86,15 +93,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!) as? [[String: Any]]
                     for dict in json! {
+                        var strs: [[String]]? = nil
                         if let title = dict["title"] as? String {
-                            print(title)
+                            print("title:\(title), with:\(with), \(title == with)")
+                            if title != with {
+                                continue
+                            }
+                            if let ques = dict["questions"] as? [[String: Any]] {
+                                for item in ques {
+                                    print(item)
+                                    var str: [String]? = nil
+                                    if let text = item["text"] as? String {
+                                        
+                                        str?.append(text)
+                                        print("str:\(str)")
+                                    }
+                                    print("item['text']:\(item["text"]! as? String)")
+                                    if str != nil {
+                                        strs?.append(str!)
+                                    }
+                                    else {
+                                        strs?.append([" "])
+                                    }
+                                    if let ans = item["answer"] as? String {
+                                        self.answers?.append(Int(ans)!)
+                                    }
+                                    if let anss = item["answers"] as? [String] {
+                                        strs?.append(anss)
+                                    }
+                                    print(strs)
+                                }
+                            }
                         }
+                        print(strs)
+                        self.questions?.append(strs!)
                     }
                 } catch let error as NSError {
                     print(error)
                 }
+                print("question: \(self.questions)")
+//                self.switchView()
             }
-            
             }.resume()
     }
 

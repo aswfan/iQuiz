@@ -9,6 +9,9 @@
 import UIKit
 
 class ReportViewController: UIViewController {
+    
+    
+    @IBOutlet weak var report: UILabel!
 
     @IBAction func finishBtnClick(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)

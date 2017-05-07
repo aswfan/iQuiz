@@ -13,6 +13,9 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     let SUBMIT = "Submit"
     let NEXT = "Next"
     
+    var totalScore = 0
+    var score = 0
+    
     @IBOutlet weak var tv: UITableView!
     
     var Num = 0
@@ -83,18 +86,21 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func nextBtnClick(_ sender: UIBarButtonItem) {
+        let num = answers?[Num]
+        let ip = IndexPath.init(row: num!, section: 1)
+        
         if sender.title == SUBMIT {
             sender.title = NEXT
             
-            let num = answers?[Num]
-            if oldip?.row != num {
+            if oldip != nil && oldip?.row == num {
+                score += 1
+            }
+            
+            if oldip != nil && oldip?.row != num {
                 tv.cellForRow(at: oldip!)?.contentView.superview?.backgroundColor = UIColor.red
                 
             }
-            let ip = IndexPath.init(row: num!, section: 1)
             tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.green
-            
-            
 
         }
         else {
@@ -103,6 +109,18 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             Num += 1
             if Num == answers?.count {
                 toReport()
+            }
+            else {
+                tv.reloadData()
+                if oldip != nil {
+                    if let cell = tv.cellForRow(at: oldip!) {
+                        cell.contentView.superview?.backgroundColor = UIColor.clear
+                        cell.accessoryType = .none
+                    }
+                }
+                tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.clear
+                
+                oldip = nil
             }
         }
         
@@ -114,15 +132,15 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // add properties if needed
         
-        
-        
         for view in self.view.subviews {
             view.removeFromSuperview()
         }
         
         self.addChildViewController(vc)
         self.view.insertSubview(vc.view, at: 0)
+        vc.report.text = "Your Grade: \(score) of \(totalScore) correct!"
         vc.didMove(toParentViewController: self)
+        
     }
     
     
@@ -130,10 +148,13 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        totalScore = (questions?.count)!
+        
         tv.delegate = self
         tv.dataSource = self
         
         self.tv.tableFooterView = UIView()
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -155,6 +155,7 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="LMW-Rh-jxe" firstAttribute="leading" secondItem="OfH-9W-s5M" secondAttribute="leading" id="5Mx-t3-CyV"/>
                             <constraint firstItem="LMW-Rh-jxe" firstAttribute="top" secondItem="HBW-m1-4BS" secondAttribute="bottom" id="86w-sq-S2e"/>
@@ -164,12 +165,20 @@
                             <constraint firstAttribute="trailing" secondItem="LMW-Rh-jxe" secondAttribute="trailing" id="Tx4-XP-MFP"/>
                             <constraint firstItem="HBW-m1-4BS" firstAttribute="leading" secondItem="OfH-9W-s5M" secondAttribute="leading" id="U9v-6j-nhW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Qaf-OE-YS6" appends="YES" id="XqP-8M-72j"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="tv" destination="HBW-m1-4BS" id="bhA-WT-Or0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lxh-HY-Vhb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Qaf-OE-YS6">
+                    <connections>
+                        <action selector="SwipeGesture:" destination="nJP-k0-708" id="VR2-VG-uCp"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="725.60000000000002" y="33.733133433283363"/>
         </scene>

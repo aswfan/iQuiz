@@ -31,6 +31,10 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         ]
     var answers: [Int]? = [1]
     
+    @IBAction func SwipeGesture(_ sender: Any) {
+        
+    }
+    
     // data source
     @available(iOS 2.0, *)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -86,11 +90,11 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     @IBAction func nextBtnClick(_ sender: UIBarButtonItem) {
-        let num = answers?[Num]
-        let ip = IndexPath.init(row: num!, section: 1)
-        
         if sender.title == SUBMIT {
             sender.title = NEXT
+            
+            let num = answers?[Num]
+            let ip = IndexPath.init(row: num!, section: 1)
             
             if oldip != nil && oldip?.row == num {
                 score += 1
@@ -112,6 +116,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             else {
                 tv.reloadData()
+                let num = answers?[Num]
+                let ip = IndexPath.init(row: num!, section: 1)
                 if oldip != nil {
                     if let cell = tv.cellForRow(at: oldip!) {
                         cell.contentView.superview?.backgroundColor = UIColor.clear
@@ -155,6 +161,25 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.tv.tableFooterView = UIView()
         
+        let swipeleft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+        swipeleft.direction = .left
+        let swiperight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+        swiperight.direction = .right
+        
+        self.tv.addGestureRecognizer(swipeleft)
+        self.tv.addGestureRecognizer(swiperight)
+        
+    }
+    
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            if swipeGesture.direction == .right {
+                quitBtnClick(UIBarButtonItem())
+            }
+            else {
+                nextBtnClick(UIBarButtonItem())
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

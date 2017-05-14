@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    let _url = "https://tednewardsandbox.site44.com/questions.json"
+    
     @IBOutlet weak var quizTable: UITableView!
     
     // Delegate
@@ -17,18 +19,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         self.switchView(title: titles?[indexPath.row])
-        
-        
     }
+    
     
     func switchView(title: String?) {
         if title == nil {
             print("Something went wrong!")
             return
         }
-        print("title: \(title!)")
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc: QuestionViewController = (sb.instantiateViewController(withIdentifier: "question") as? QuestionViewController)!
+        let identifier = "question"
+        let vc = ConfigViewControlloer(identifier: identifier) as! QuestionViewController
         
         vc.questions = self.questions[title!]
         vc.answers = self.answers[title!]
@@ -36,24 +36,71 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func SettingBtnPressDown(_ sender: Any) {
-        let alert = UIAlertController(title: "", message: "Settings go here", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    func ConfigViewControlloer(identifier: String) -> UIViewController {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        return sb.instantiateViewController(withIdentifier: identifier)
+    }
+    
+    var url: String? = nil
+    @IBAction func SettingBtnPressDown(_ sender: UIBarButtonItem) {
+        
+        self.url = nil
+        let identifier = "popover"
+        
+        let vc = ConfigViewControlloer(identifier: identifier) as! PopoverViewController
+        
+        vc.supercontroller = self
+        
+        vc.modalPresentationStyle = .popover
+        
+        self.addChildViewController(vc)
+        vc.view.frame = self.view.frame
+        self.view.addSubview(vc.view)
+        vc.view.didMoveToSuperview()
+        
+    }
+    
+    func popoverHandler() {
+        if  url != nil {
+            ConnectToServer(urlString: url)
+        }
+    }
+    
+    let security = "https://"
+    let insecurity = "http://"
+    
+    func ConnectToServer(urlString: String?) {
+        var url = urlString
+        if url == nil {
+            print("Invalid URL!")
+            url = self._url
+        }
+        if url?.range(of: security) == nil  {
+            if let range = url?.range(of: insecurity)  {
+                url?.removeSubrange(range)
+            }
+            url = security + url!
+        }
+        DispatchQueue.global(qos: .userInitiated).async {
+            self.fetchDataFromServer(url!)
+        }
+    }
+    
+    func validateUrl (urlString: String) -> Bool {
+        return UIApplication.shared.canOpenURL(URL(string: urlString)!)
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.global(qos: .userInitiated).async {
-            self.fetchDataFromServer("https://tednewardsandbox.site44.com/questions.json" )
-        }
+        //ConnectToServer(urlString: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        self.quizTable.dataSource = self
+        self.quizTable.delegate = self
         
-        
-        
+        self.quizTable.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -142,12 +189,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 } catch let error as NSError {
                     print(error)
                 }
-            }
-            DispatchQueue.main.async {
-                self.quizTable.dataSource = self
-                self.quizTable.delegate = self
-                
-                self.quizTable.tableFooterView = UIView()
+                DispatchQueue.main.async {
+                    self.quizTable.reloadData()
+                }
             }
             
         }.resume()

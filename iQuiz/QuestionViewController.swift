@@ -38,6 +38,9 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     // data source
     @available(iOS 2.0, *)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if questions == nil {
+            return 0
+        }
         return questions![Num][section].count
     }
     
@@ -93,19 +96,19 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         if sender.title == SUBMIT {
             sender.title = NEXT
             
-            let num = answers?[Num]
-            let ip = IndexPath.init(row: num!, section: 1)
-            
-            if oldip != nil && oldip?.row == num {
-                score += 1
-            }
-            
-            if oldip != nil && oldip?.row != num {
-                tv.cellForRow(at: oldip!)?.contentView.superview?.backgroundColor = UIColor.red
+            if let num = answers?[Num] {
+                let ip = IndexPath.init(row: num, section: 1)
                 
+                if oldip != nil && oldip?.row == num {
+                    score += 1
+                }
+                
+                if oldip != nil && oldip?.row != num {
+                    tv.cellForRow(at: oldip!)?.contentView.superview?.backgroundColor = UIColor.red
+                    
+                }
+                tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.green
             }
-            tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.green
-
         }
         else {
             sender.title = SUBMIT
@@ -116,17 +119,19 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             else {
                 tv.reloadData()
-                let num = answers?[Num]
-                let ip = IndexPath.init(row: num!, section: 1)
-                if oldip != nil {
-                    if let cell = tv.cellForRow(at: oldip!) {
-                        cell.contentView.superview?.backgroundColor = UIColor.clear
-                        cell.accessoryType = .none
+                if let num = answers?[Num] {
+                    let ip = IndexPath.init(row: num, section: 1)
+                    if oldip != nil {
+                        if let cell = tv.cellForRow(at: oldip!) {
+                            cell.contentView.superview?.backgroundColor = UIColor.clear
+                            cell.accessoryType = .none
+                        }
                     }
+                    tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.clear
+                    
+                    oldip = nil
                 }
-                tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.clear
                 
-                oldip = nil
             }
         }
         
@@ -154,7 +159,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        totalScore = (questions?.count)!
+        totalScore = questions?.count ?? 0
         
         tv.delegate = self
         tv.dataSource = self

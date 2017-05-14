@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -99,7 +100,7 @@
                     <navigationItem key="navigationItem" id="haB-gy-Tf2">
                         <barButtonItem key="rightBarButtonItem" title="Setting" id="JrB-fa-hEQ">
                             <connections>
-                                <action selector="SettingBtnPressDown:" destination="BYZ-38-t0r" id="KM0-SU-Dl2"/>
+                                <action selector="SettingBtnPressDown:" destination="BYZ-38-t0r" id="drS-Ne-gNi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -201,7 +202,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kGe-bb-dny">
-                                <rect key="frame" x="166.5" y="627" width="41" height="30"/>
+                                <rect key="frame" x="167" y="627" width="41" height="30"/>
                                 <state key="normal" title="Finish"/>
                                 <connections>
                                     <action selector="finishBtnClick:" destination="bfC-vi-uoL" eventType="touchUpInside" id="eEN-4H-Uni"/>
@@ -223,6 +224,70 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7gM-bs-W64" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1409" y="34"/>
+        </scene>
+        <!--Popover View Controller-->
+        <scene sceneID="QGb-2H-W0r">
+            <objects>
+                <viewController storyboardIdentifier="popover" id="Hfj-OH-GlA" customClass="PopoverViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1xD-JW-fl8"/>
+                        <viewControllerLayoutGuide type="bottom" id="Apz-l3-Qxl"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="AvW-VK-OTe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" restorationIdentifier="collection" translatesAutoresizingMaskIntoConstraints="NO" id="D0a-VY-hwj">
+                                <rect key="frame" x="51" y="70" width="273" height="203"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ukx-c5-VlH">
+                                        <rect key="frame" x="20" y="50" width="233" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rJc-O8-AKP">
+                                        <rect key="frame" x="20" y="120" width="48" height="30"/>
+                                        <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <action selector="CancelBtnOnClick:" destination="Hfj-OH-GlA" eventType="touchUpInside" id="bQp-gS-0hV"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YN7-th-GDA">
+                                        <rect key="frame" x="174" y="120" width="79" height="30"/>
+                                        <state key="normal" title="Check Now"/>
+                                        <connections>
+                                            <action selector="CheckBtnOnClick:" destination="Hfj-OH-GlA" eventType="touchUpInside" id="TJu-1D-c8c"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="rJc-O8-AKP" firstAttribute="top" secondItem="ukx-c5-VlH" secondAttribute="bottom" constant="40" id="2df-fC-Fsz"/>
+                                    <constraint firstAttribute="height" constant="203" id="HwJ-BE-NxD"/>
+                                    <constraint firstItem="rJc-O8-AKP" firstAttribute="leading" secondItem="D0a-VY-hwj" secondAttribute="leading" constant="20" id="RLS-tZ-fCV"/>
+                                    <constraint firstItem="ukx-c5-VlH" firstAttribute="leading" secondItem="D0a-VY-hwj" secondAttribute="leading" constant="20" id="WcB-Ak-zaK"/>
+                                    <constraint firstItem="YN7-th-GDA" firstAttribute="top" secondItem="ukx-c5-VlH" secondAttribute="bottom" constant="40" id="Y4N-pN-q0F"/>
+                                    <constraint firstAttribute="trailing" secondItem="ukx-c5-VlH" secondAttribute="trailing" constant="20" id="aNV-20-hDY"/>
+                                    <constraint firstItem="ukx-c5-VlH" firstAttribute="top" secondItem="D0a-VY-hwj" secondAttribute="top" constant="50" id="agG-7s-cWg"/>
+                                    <constraint firstAttribute="trailing" secondItem="YN7-th-GDA" secondAttribute="trailing" constant="20" id="pOL-9s-0kT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="D0a-VY-hwj" firstAttribute="top" secondItem="1xD-JW-fl8" secondAttribute="bottom" constant="50" id="Etf-YC-Gwh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D0a-VY-hwj" secondAttribute="trailing" constant="35" id="Oyd-as-1zz"/>
+                            <constraint firstItem="D0a-VY-hwj" firstAttribute="leading" secondItem="AvW-VK-OTe" secondAttribute="leadingMargin" constant="35" id="e5X-Qo-ZeZ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="URLField" destination="ukx-c5-VlH" id="Brx-vE-gzM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f6E-Ak-RCd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1132" y="727.28635682158927"/>
         </scene>
     </scenes>
 </document>

@@ -91,13 +91,15 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBAction func quitBtnClick(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+    let ANSWER_SECTION = 1
+    let ANSWER_OFFSET = -1
     @IBAction func nextBtnClick(_ sender: UIBarButtonItem) {
         if sender.title == SUBMIT {
             sender.title = NEXT
             
-            if let num = answers?[Num] {
-                let ip = IndexPath.init(row: num, section: 1)
+            if let _num = answers?[Num] {
+                let num = _num + ANSWER_OFFSET
+                let ip = IndexPath.init(row: num , section: 1)
                 
                 if oldip != nil && oldip?.row == num {
                     score += 1
@@ -119,19 +121,18 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             }
             else {
                 tv.reloadData()
-                if let num = answers?[Num] {
+                if let _num = answers?[Num-1] {
+                    let num = _num + ANSWER_OFFSET
                     let ip = IndexPath.init(row: num, section: 1)
                     if oldip != nil {
                         if let cell = tv.cellForRow(at: oldip!) {
-                            cell.contentView.superview?.backgroundColor = UIColor.clear
+                            cell.contentView.superview?.backgroundColor = UIColor.white
                             cell.accessoryType = .none
                         }
                     }
-                    tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.clear
-                    
+                    tv.cellForRow(at: ip)?.contentView.superview?.backgroundColor = UIColor.white
                     oldip = nil
                 }
-                
             }
         }
         

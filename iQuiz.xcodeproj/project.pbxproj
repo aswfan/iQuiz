@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9D8775671EC7D38000C0BC03 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8775661EC7D38000C0BC03 /* PopoverViewController.swift */; };
+		9DA3ECB11ECA437300F33B9B /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA3ECB01ECA437300F33B9B /* TableViewController.swift */; };
 		9DB63CE91EB533E900AEE931 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB63CE81EB533E900AEE931 /* QuestionViewController.swift */; };
 		9DB63CEB1EB5344B00AEE931 /* ReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB63CEA1EB5344B00AEE931 /* ReportViewController.swift */; };
 		9DB63CED1EB54FAF00AEE931 /* myTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB63CEC1EB54FAF00AEE931 /* myTableViewCell.swift */; };
@@ -39,6 +40,7 @@
 
 /* Begin PBXFileReference section */
 		9D8775661EC7D38000C0BC03 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		9DA3ECB01ECA437300F33B9B /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		9DB63CE81EB533E900AEE931 /* QuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		9DB63CEA1EB5344B00AEE931 /* ReportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportViewController.swift; sourceTree = "<group>"; };
 		9DB63CEC1EB54FAF00AEE931 /* myTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = myTableViewCell.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				9DB63CEA1EB5344B00AEE931 /* ReportViewController.swift */,
 				9DB63CEC1EB54FAF00AEE931 /* myTableViewCell.swift */,
 				9D8775661EC7D38000C0BC03 /* PopoverViewController.swift */,
+				9DA3ECB01ECA437300F33B9B /* TableViewController.swift */,
 			);
 			path = iQuiz;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DE234B71EB3D07000060A8A /* ViewController.swift in Sources */,
+				9DA3ECB11ECA437300F33B9B /* TableViewController.swift in Sources */,
 				9DE234B51EB3D07000060A8A /* AppDelegate.swift in Sources */,
 				9DB63CED1EB54FAF00AEE931 /* myTableViewCell.swift in Sources */,
 				9DB63CE91EB533E900AEE931 /* QuestionViewController.swift in Sources */,

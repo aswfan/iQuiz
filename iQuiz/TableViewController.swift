@@ -1,31 +1,21 @@
-//
-//  ViewController.swift
-//  iQuiz
-//
-//  Created by iGuest on 4/28/17.
-//  Copyright © 2017 yyfan. All rights reserved.
-//
-
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    let _url = "https://tednewardsandbox.site44.com/questions.json"
+class TableViewController: UITableViewController {
     
-    @IBOutlet weak var quizTable: UITableView!
+    let _url = "https://tednewardsandbox.site44.com/questions.json"
     
     func handleRefresh(_ refreshControl: UIRefreshControl) {
         // Do some reloading of data and update the table view's data source
         // Fetch more objects from a web service, for example...
         
         // Simply adding an object to the data source for this example
-        self.popoverHandler(url: nil)
+        self.popoverHandler(url: url)
         refreshControl.endRefreshing()
     }
     
     // Delegate
     //
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
         self.switchView(title: titles?[indexPath.row])
     }
@@ -50,13 +40,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return sb.instantiateViewController(withIdentifier: identifier)
     }
     
-    var url: String? = nil
     @IBAction func SettingBtnPressDown(_ sender: UIBarButtonItem) {
         let identifier = "popover"
         
         let vc = ConfigViewControlloer(identifier: identifier) as! PopoverViewController
         
-//        vc.supercontroller = self
+        vc.supercontroller = self
         
         vc.modalPresentationStyle = .popover
         
@@ -67,6 +56,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
     }
     
+    var url = ""
     func popoverHandler(url: String?) {
         ConnectToServer(urlString: url)
     }
@@ -109,19 +99,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.quizTable.dataSource = self
-        self.quizTable.delegate = self
         
-        self.quizTable.tableFooterView = UIView()
+        self.tableView.tableFooterView = UIView()
         
-        self.quizTable.refreshControl?.addTarget(self, action: #selector(ViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(ViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
     
     var titles: [String]? = []
     var imgs: [UIImage]? = [#imageLiteral(resourceName: "Math"), #imageLiteral(resourceName: "Marvel"), #imageLiteral(resourceName: "Science")]
@@ -134,12 +122,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // Data Source
     //
     @available(iOS 2.0, *)
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return titles!.count
     }
     
     @available(iOS 2.0, *)
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let cellIdentifier = "myTableCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? myTableViewCell ?? myTableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
@@ -148,7 +136,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.des?.text = dess?[row]
         return cell
     }
-
+    
     // fetch data from server
     func fetchDataFromServer(_ serverURL: String) {
         let url = URL(string: serverURL)
@@ -197,12 +185,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                                 var str = [String]()
                                 if let text = item["text"] as? String {
                                     str.append(text)
-                                }
-                                if str.count != 0 {
                                     strs.append(str)
-                                }
-                                else {
-                                    strs.append([" "])
                                 }
                                 if let ans = item["answer"] as? String {
                                     DispatchQueue.main.async(execute: {
@@ -224,14 +207,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     print(error)
                 }
                 DispatchQueue.main.async {
-                    self.quizTable.reloadData()
+                    self.tableView.reloadData()
                 }
             }
             
-        }.resume()
+            }.resume()
         
     }
-
+    
 }
-
-

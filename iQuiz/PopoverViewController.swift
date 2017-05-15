@@ -10,17 +10,19 @@ import UIKit
 
 class PopoverViewController: UIViewController {
     
-    var supercontroller: ViewController? = nil
+    var supercontroller: TableViewController? = nil
 
     @IBOutlet weak var URLField: UITextField!
     
     @IBAction func CheckBtnOnClick(_ sender: UIButton) {
-        supercontroller?.url = URLField.text
+        if let url = URLField.text {
+            supercontroller?.url = url
+            supercontroller?.popoverHandler(url: url)
+        }
         self.view.removeFromSuperview()
     }
     
     @IBAction func CancelBtnOnClick(_ sender: UIButton) {
-        supercontroller?.url = nil
         self.view.removeFromSuperview()
     }
     
@@ -36,9 +38,6 @@ class PopoverViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        supercontroller?.popoverHandler()
-    }
 
     /*
     // MARK: - Navigation

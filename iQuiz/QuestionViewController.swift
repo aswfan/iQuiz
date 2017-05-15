@@ -34,10 +34,6 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         ]
     var answers: [Int]? = [1]
     
-    @IBAction func SwipeGesture(_ sender: Any) {
-        
-    }
-    
     // data source
     @available(iOS 2.0, *)
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -154,7 +150,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.addChildViewController(vc)
         self.view.insertSubview(vc.view, at: 0)
         vc.report.text = "Your Grade: \(score) of \(totalScore) correct!"
-        supercontroller?.score[TITLE!] = Float(score) / Float(totalScore)
+        supercontroller?.score[TITLE!] = String(format: "%.2f", Float(score) / Float(totalScore))
         vc.didMove(toParentViewController: self)
     }
     
@@ -180,13 +176,14 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         
     }
     
+    @IBOutlet weak var submit_next: UIBarButtonItem!
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             if swipeGesture.direction == .right {
                 quitBtnClick(UIBarButtonItem())
             }
             else {
-                nextBtnClick(UIBarButtonItem())
+                nextBtnClick(submit_next)
             }
         }
     }

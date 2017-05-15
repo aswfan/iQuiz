@@ -13,7 +13,7 @@ class TableViewController: UITableViewController {
         refreshControl.endRefreshing()
     }
     
-    // Delegate
+    // MARK: Delegate
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.setSelected(false, animated: true)
@@ -56,6 +56,28 @@ class TableViewController: UITableViewController {
         self.view.addSubview(vc.view)
         vc.view.didMoveToSuperview()
         
+    }
+    
+    @IBAction func getScores(_ sender: Any) {
+        let identifier = "scorepopover"
+        
+        let vc = ConfigViewControlloer(identifier: identifier) as! ScorePopoverViewController
+        
+        var text = "no score!"
+        if self.score.count > 0 {
+            text = self.score.description.replacingOccurrences(of: "[", with: "")
+                .description.replacingOccurrences(of: "]", with: "")
+                .replacingOccurrences(of: "\"", with: "")
+        }
+        vc.text = text
+        
+        vc.modalPresentationStyle = .popover
+        
+        self.addChildViewController(vc)
+        vc.view.frame = self.view.frame
+        self.view.addSubview(vc.view)
+        vc.view.didMoveToSuperview()
+
     }
     
     var url = ""
@@ -119,9 +141,9 @@ class TableViewController: UITableViewController {
     
     var questions = [String: [[[String]]]]()
     var answers = [String: [Int]]()
-    var score = [String: Float?]()
+    var score = [String: String]()
     
-    // Data Source
+    // MARK: Data Source
     //
     @available(iOS 2.0, *)
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -139,7 +161,7 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    // fetch data from server
+    // MARK: fetch data from server
     func fetchDataFromServer(_ serverURL: String) {
         let url = URL(string: serverURL)
         URLSession.shared.dataTask(with:url!) { (data, response, error) in

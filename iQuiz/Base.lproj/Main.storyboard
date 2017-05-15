@@ -65,7 +65,63 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-42" y="1134"/>
+            <point key="canvasLocation" x="650" y="1399"/>
+        </scene>
+        <!--Score Popover View Controller-->
+        <scene sceneID="db7-Yk-1t6">
+            <objects>
+                <viewController storyboardIdentifier="scorepopover" id="XPN-f9-XpA" customClass="ScorePopoverViewController" customModule="iQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QdA-AA-hR6"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hfc-Yq-HL9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VSk-7A-79n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jAh-Ws-Lk4">
+                                <rect key="frame" x="66" y="70" width="243" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WAa-Az-eel">
+                                        <rect key="frame" x="10" y="54" width="223" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytz-ES-J7c">
+                                        <rect key="frame" x="103" y="98" width="37" height="30"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="DoneBtnOnclick:" destination="XPN-f9-XpA" eventType="touchUpInside" id="Gv8-ux-W64"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="7Xg-uv-VNo"/>
+                                    <constraint firstItem="WAa-Az-eel" firstAttribute="leading" secondItem="jAh-Ws-Lk4" secondAttribute="leading" constant="10" id="CL7-wJ-YRx"/>
+                                    <constraint firstAttribute="trailing" secondItem="WAa-Az-eel" secondAttribute="trailing" constant="10" id="TID-tE-kB1"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ytz-ES-J7c" secondAttribute="bottom" id="dbw-kU-fnf"/>
+                                    <constraint firstItem="WAa-Az-eel" firstAttribute="centerY" secondItem="jAh-Ws-Lk4" secondAttribute="centerY" id="pLW-OW-jZ8"/>
+                                    <constraint firstItem="WAa-Az-eel" firstAttribute="centerX" secondItem="jAh-Ws-Lk4" secondAttribute="centerX" id="r2d-ny-Y0z"/>
+                                    <constraint firstItem="Ytz-ES-J7c" firstAttribute="centerX" secondItem="jAh-Ws-Lk4" secondAttribute="centerX" id="sTp-tR-s8W"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="jAh-Ws-Lk4" secondAttribute="trailing" constant="50" id="2gN-7x-VeL"/>
+                            <constraint firstItem="jAh-Ws-Lk4" firstAttribute="top" secondItem="QdA-AA-hR6" secondAttribute="bottom" constant="50" id="K6n-0J-eGC"/>
+                            <constraint firstItem="jAh-Ws-Lk4" firstAttribute="leading" secondItem="VSk-7A-79n" secondAttribute="leadingMargin" constant="50" id="Kba-fh-gzr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scorelabel" destination="WAa-Az-eel" id="iGZ-2F-LIk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DML-LV-Xjr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-41" y="501"/>
         </scene>
         <!--Question View Controller-->
         <scene sceneID="28I-rJ-OQg">
@@ -126,6 +182,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="submit_next" destination="Jca-2q-krj" id="gVp-Sq-rVP"/>
                         <outlet property="tv" destination="HBW-m1-4BS" id="bhA-WT-Or0"/>
                     </connections>
                 </viewController>
@@ -239,6 +296,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="D23-jS-RVz">
+                        <barButtonItem key="leftBarButtonItem" title="Score" id="VuI-fl-hA1">
+                            <connections>
+                                <action selector="getScores:" destination="fy2-nN-ksN" id="Umj-Lq-zvP"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Setting" id="5Kc-kU-XCi">
                             <connections>
                                 <action selector="SettingBtnPressDown:" destination="fy2-nN-ksN" id="tu6-de-q5n"/>
@@ -246,6 +308,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="ft8-sj-D10">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </refreshControl>
                 </tableViewController>

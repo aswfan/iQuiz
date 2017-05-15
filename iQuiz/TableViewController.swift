@@ -70,6 +70,7 @@ class TableViewController: UITableViewController {
                 .replacingOccurrences(of: "\"", with: "")
         }
         vc.text = text
+        vc.count = score.count
         
         vc.modalPresentationStyle = .popover
         
@@ -136,7 +137,7 @@ class TableViewController: UITableViewController {
     
     
     var titles: [String]? = []
-    var imgs: [UIImage]? = [#imageLiteral(resourceName: "Math"), #imageLiteral(resourceName: "Marvel"), #imageLiteral(resourceName: "Science")]
+    var imgs: [String: UIImage]? = nil
     var dess: [String]? = []
     
     var questions = [String: [[[String]]]]()
@@ -155,8 +156,25 @@ class TableViewController: UITableViewController {
         let row = indexPath.row
         let cellIdentifier = "myTableCell"
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) as? myTableViewCell ?? myTableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-        cell.title?.text = titles?[row]
-        cell.img?.image = imgs?[row % 3] // repeatedly using limited number of icons
+        let title = (titles?[row])!
+        cell.title?.text = title
+        var icon = #imageLiteral(resourceName: "0 Percents Filled")
+        
+        if score.index(forKey: title) != nil {
+            switch Double(score[title]!)! {
+            case 0...0.124:
+                icon = #imageLiteral(resourceName: "0 Percents Filled")
+            case 0.125...0.374:
+                icon = #imageLiteral(resourceName: "25 Percents Filled")
+            case 0.375...0.624:
+                icon = #imageLiteral(resourceName: "50 Percents Filled")
+            case 0.625...0.874:
+                icon = #imageLiteral(resourceName: "75 Percents Filled")
+            default:
+                icon = #imageLiteral(resourceName: "100 Percents Filled")
+            }
+        }
+        cell.img?.image = icon
         cell.des?.text = dess?[row]
         return cell
     }

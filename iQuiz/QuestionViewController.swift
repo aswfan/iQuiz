@@ -151,6 +151,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.view.insertSubview(vc.view, at: 0)
         vc.report.text = "Your Grade: \(score) of \(totalScore) correct!"
         supercontroller?.score[TITLE!] = String(format: "%.2f", Float(score) / Float(totalScore))
+        supercontroller?.tableView.reloadData()
         vc.didMove(toParentViewController: self)
     }
     

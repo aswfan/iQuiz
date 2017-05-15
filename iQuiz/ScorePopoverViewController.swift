@@ -11,12 +11,18 @@ import UIKit
 class ScorePopoverViewController: UIViewController {
 
     var text = ""
+    var count = 0
+    
     @IBOutlet weak var scorelabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if count > 1 {
+            scorelabel.numberOfLines = count
+            
+        }
         scorelabel.text = text
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         

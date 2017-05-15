@@ -31,6 +31,8 @@ class TableViewController: UITableViewController {
         
         vc.questions = self.questions[title!]
         vc.answers = self.answers[title!]
+        vc.supercontroller = self
+        vc.TITLE = title!
         
         self.present(vc, animated: true, completion: nil)
     }
@@ -117,7 +119,7 @@ class TableViewController: UITableViewController {
     
     var questions = [String: [[[String]]]]()
     var answers = [String: [Int]]()
-    
+    var score = [String: Float?]()
     
     // Data Source
     //

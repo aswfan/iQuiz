@@ -13,8 +13,11 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
     let SUBMIT = "Submit"
     let NEXT = "Next"
     
+    var supercontroller: TableViewController? = nil
+    
     var totalScore = 0
     var score = 0
+    var TITLE: String? = nil
     
     @IBOutlet weak var tv: UITableView!
     
@@ -151,8 +154,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         self.addChildViewController(vc)
         self.view.insertSubview(vc.view, at: 0)
         vc.report.text = "Your Grade: \(score) of \(totalScore) correct!"
+        supercontroller?.score[TITLE!] = Float(score) / Float(totalScore)
         vc.didMove(toParentViewController: self)
-        
     }
     
     
